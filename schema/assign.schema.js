@@ -1,26 +1,31 @@
- const { default: mongoose } = require("mongoose");
-const moongoose= require("mongoose");
+ const mongoose=require("mongoose")
 
- const AssignSchema= mongoose.Schema({
-Asiganid:{
-    type:moongoose.Schema.Types.ObjectId,
-    required:true
 
+
+const AssignSchema=  mongoose.Schema({
+    MentorId:{
+        type:mongoose.Schema.Types.ObjectId,
+        required:true
+    },
+    MentorName:{
+        type:String,
+        required:true
+    },
+    StudentName:{
+            type:String,
+            required:true,
+        },
+    StudentEmail:{
+            type:String,
+            required:true
+        }
+            
+    
 },
-studentname:{
-    type:String,
-    required:true
-
-},
-studentmail:{
-    type:String,
-    required:true
-
-}
+{
+    versionKey:false
+})
 
 
- })
-
-
- const Assigning= mongoose.model("assign", AssignSchema)
- module.exports= Assigning
+ const AssignModel= mongoose.model("assign", AssignSchema)
+ module.exports= AssignModel

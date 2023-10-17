@@ -1,21 +1,18 @@
-const mentorSchema = require("../schema/mentor.schema.js");
-
+const Mentormodel = require("../schema/mentor.schema.js");
 const menterRouter=require("express").Router();
 
-
-
-
-menterRouter.get("/mentor" , function (req, res,next){
-    res.status(200).json({
-        message:"mentor fetch successfully"
-    })
-
-})
+// 1. Create Api for mentor
+// http://localhost:3000/api/crementor,
+// {
+    //enter your mentor name and deparment
+//     "name":"",
+//     "department":""
+// }
 
 
 menterRouter.post("/crementor" , async function (req, res,next){
     const {name ,department}=req.body;
-    const mentornew=  await new mentorSchema({
+     const mentornew=  await  Mentormodel({
         name:name,
         department:department
     })
@@ -26,6 +23,23 @@ menterRouter.post("/crementor" , async function (req, res,next){
         mentornew,
         message:'create successfully',
     })
+})
+
+// show all mentor
+// http://localhost:3000/api/mentor
+menterRouter.get("/mentor" ,  async(req, res)=>{
+    try {
+        const mentor = await Mentormodel.find();
+        res.status(200).send({
+            data:mentor
+        })
+        
+    } catch (error) {
+        res.status(500).send({
+            message:"your internal server error"
+        })
+    }
+ 
 })
 
 

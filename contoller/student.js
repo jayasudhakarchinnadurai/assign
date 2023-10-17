@@ -2,22 +2,14 @@ const mongoose=require("mongoose")
 const studentmodel = require("../schema/student.schema.js");
 const studentRouter=require("express").Router();
 
-
-
-
-
-studentRouter.get("/student/:id", async (req, res) => {
-    const {id}=req.params
-    try {
-      const users = await studentmodel.find()
-      const data= users.find((value)=>value.id === id)
-      res.send(data)
-
-      
-    } catch (err) {
-      res.status(500).json({message: err.message})
-    }
-  });
+//2.create api for student
+//http://localhost:3000/api/creatstu
+// enter your name email and batch
+// {
+//   "name":"",
+//   "email":"",
+//   "batch":""
+// }
 
 studentRouter.post("/creatstu" , async function (req, res){
     const {name, email, batch}=req.body
