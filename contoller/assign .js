@@ -2,13 +2,14 @@ const AssignModel = require('../schema/assign.schema.js');
 const Mentormodel=require("../schema/mentor.schema.js")
 const AssignRouter= require('express').Router();
 const studentmodel=require("../schema/student.schema.js")
+const PriviousModel=require("../schema/previous.schema.js")
 
 //3.create Assign  to mantor add students
 //http://localhost:3000/api/creassign
 //enter your student id and mentorid
 // {
 //   "id":"studentid",
-// "idx":"mentor id"
+//   "idx":"mentor id"
 // }
 
 
@@ -24,6 +25,12 @@ try {
         StudentName: student.name,
         StudentEmail:student.email
     })
+    const priviousnew = await PriviousModel({
+        previousMentor:mentor.name,
+        StudentName:student.name,
+        StudentEmail:student.email
+    })
+    await priviousnew.save();
 
    await Assignnew.save();
      res.status(200).send({
@@ -105,24 +112,25 @@ try {
     }
 })
 
-//6.previous mentor particular mentor name
-AssignRouter.get("/data/:id",async(req,res)=>{
-    const {id}=req.params
-    const user = await AssignModel.findOne({_id:id})
-   
+//6.previous mentor particular mentor name and student details
+//http://localhost:3000/api/privious
+
+AssignRouter.get("/previous",async(req,res)=>{
+
     try {
-         res.status(200).send({
-            message:"succssfull",
-            data:user,
-           
-           
-            
-         })
+        const previous= await PriviousModel.find();
+        res.status(200).send({
+            message:"succsesfull",
+            data:previous
+
+        })
         
     } catch (error) {
+        res.status(500).send({
+            message:"internal server error "
+        })
         
     }
 })
-
 
 module.exports=AssignRouter;
