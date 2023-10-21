@@ -78,8 +78,8 @@ AssignRouter.get('/assignall', async(req,res)=>{
 //enter your assign id for req.params and req.body student id and mentor id
 // {
   
-//     "id":"studentid",
-//     "idx":"mentorid"
+//     "studentid":"studentid",
+//     "mentoridx":"mentorid"
     
 //   }
 
