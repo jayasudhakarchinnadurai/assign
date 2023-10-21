@@ -5,7 +5,7 @@ const studentmodel=require("../schema/student.schema.js")
 const PriviousModel=require("../schema/previous.schema.js")
 
 //3.create Assign  to mantor add students
-//http://localhost:3000/api/creassign
+// https://assign-41sz.onrender.com/api/creassign
 //enter your student id and mentorid
 // {
 //   "id":"studentid",
@@ -15,12 +15,12 @@ const PriviousModel=require("../schema/previous.schema.js")
 
 
 AssignRouter.post("/creassign",async(req,res)=>{
-    const {idx,id}=req.body
-   const student=await studentmodel.findOne({_id:id})
-   const mentor=await Mentormodel.findOne({_id:idx})
+    const {mentoridx,studentid}=req.body
+   const student=await studentmodel.findOne({_id:studentid})
+   const mentor=await Mentormodel.findOne({_id:mentoridx})
 try {
      const Assignnew = await AssignModel({
-        MentorId:idx,
+        MentorId:mentoridx,
         MentorName:mentor.name,
         StudentName: student.name,
         StudentEmail:student.email
@@ -46,7 +46,7 @@ try {
 })
 
 //4.show all students assign particular mentor
-//http://localhost:3000/api/assignall
+// https://assign-41sz.onrender.com/api/assignall
 //enter your mentor name
 //{
 //     "MentorName":"name"
@@ -74,7 +74,7 @@ AssignRouter.get('/assignall', async(req,res)=>{
 })
 
 //5.change to mentor to student
-//http://localhost:3000/api/changassign/:assignid
+//https://assign-41sz.onrender.com/api/changassign/:assignid
 //enter your assign id for req.params and req.body student id and mentor id
 // {
   
@@ -85,15 +85,15 @@ AssignRouter.get('/assignall', async(req,res)=>{
 
 AssignRouter.put("/changassign/:assignid",async(req,res)=>{
     const {assignid}=req.params
-    const {idx,id}=req.body
-   const student=await studentmodel.findOne({_id:id})
-   const mentor=await Mentormodel.findOne({_id:idx})
+    const {studentid,mentoridx}=req.body
+   const student=await studentmodel.findOne({_id:studentid})
+   const mentor=await Mentormodel.findOne({_id:mentoridx})
    
 try {
     const edit =  await AssignModel.findByIdAndUpdate(assignid,
         {$set:
         {
-            MentorId:idx,
+            MentorId:mentoridx,
             MentorName:mentor.name,
             StudentName: student.name,
             StudentEmail:student.email
@@ -113,7 +113,7 @@ try {
 })
 
 //6.previous mentor particular mentor name and student details
-//http://localhost:3000/api/privious
+// https://assign-41sz.onrender.com/api/privious
 
 AssignRouter.get("/previous",async(req,res)=>{
 

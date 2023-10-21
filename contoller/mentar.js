@@ -2,7 +2,7 @@ const Mentormodel = require("../schema/mentor.schema.js");
 const menterRouter=require("express").Router();
 
 // 1. Create Api for mentor
-// http://localhost:3000/api/crementor,
+// https://assign-41sz.onrender.com/api/crementor,
 // {
     //enter your mentor name and deparment
 //     "name":"",
@@ -26,7 +26,7 @@ menterRouter.post("/crementor" , async function (req, res,next){
 })
 
 // show all mentor
-// http://localhost:3000/api/mentor
+// https://assign-41sz.onrender.com/api/mentor
 menterRouter.get("/mentor" ,  async(req, res)=>{
     try {
         const mentor = await Mentormodel.find();
