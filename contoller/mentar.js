@@ -25,7 +25,7 @@ menterRouter.post("/crementor" , async function (req, res,next){
     })
 })
 
-// show all mentor
+
 // https://assign-41sz.onrender.com/api/mentor
 menterRouter.get("/mentor" ,  async(req, res)=>{
     try {
