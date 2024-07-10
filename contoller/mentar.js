@@ -21,7 +21,7 @@ menterRouter.post("/crementor" , async function (req, res,next){
 
     res.status(200).json({
         mentornew,
-        message:'create successfully',
+        message:'create successfull',
     })
 })
 
