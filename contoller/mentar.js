@@ -26,7 +26,6 @@ menterRouter.post("/crementor" , async function (req, res,next){
 })
 
 
-// https://assign-41sz.onrender.com/api/mentor
 menterRouter.get("/mentor" ,  async(req, res)=>{
     try {
         const mentor = await Mentormodel.find();
