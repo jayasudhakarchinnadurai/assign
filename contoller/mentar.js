@@ -7,7 +7,7 @@ const menterRouter=require("express").Router();
     //enter your mentor name and deparment
 //     "name":"",
 //     "department":""
-// }
+
 
 
 menterRouter.post("/crementor" , async function (req, res,next){
