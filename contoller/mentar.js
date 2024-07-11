@@ -1,11 +1,7 @@
 const Mentormodel = require("../schema/mentor.schema.js");
 const menterRouter=require("express").Router();
 
-// 1. Create Api for mentor
-// https://assign-41sz.onrender.com/api/crementor,
-// {
-    //enter your mentor name and deparment
-//     "name":"",
+
 //     "department":""
 // }
 
